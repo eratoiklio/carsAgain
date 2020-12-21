@@ -14,6 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 @AllArgsConstructor
+@Builder
 public class Ride {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

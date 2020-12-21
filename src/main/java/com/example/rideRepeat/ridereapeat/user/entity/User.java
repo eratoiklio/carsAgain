@@ -20,16 +20,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
     private String firstName;
-    //czy mogę final
     @Builder.Default
     @ManyToMany
     @JoinTable(name="user_ride",joinColumns=@JoinColumn(name="user_id"),inverseJoinColumns = @JoinColumn(name="ride_id"))
-    //why?
-    private final Set<Ride> ridesAsPassenger = new HashSet<>();
+    private Set<Ride> ridesAsPassenger = new HashSet<>();
     @Builder.Default
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.PERSIST);
-    private final Set<Ride> ridesAsOwner = new HashSet<>();
-
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.PERSIST)
+    private Set<Ride> ridesAsOwner = new HashSet<>();
+    public void addOwnerRide(Ride ride) {
+        ride.setOwner(this);
+        this.ridesAsOwner.add(ride);
+    }
     public User(){
 
     }

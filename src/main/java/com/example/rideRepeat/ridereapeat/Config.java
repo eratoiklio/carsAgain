@@ -23,7 +23,7 @@ public class Config {
                 .to("Legionowo")
                 .build();
 
-
+userService.addRideAsOwner(user,ride);
     }
 
 }
