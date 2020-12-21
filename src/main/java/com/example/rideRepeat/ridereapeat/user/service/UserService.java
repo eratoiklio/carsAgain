@@ -1,6 +1,5 @@
 package com.example.rideRepeat.ridereapeat.user.service;
 
-import com.example.rideRepeat.ridereapeat.ride.entity.Ride;
 import com.example.rideRepeat.ridereapeat.user.entity.User;
 import com.example.rideRepeat.ridereapeat.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,10 +11,9 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+
     @Transactional
-    public User addRideAsOwner(User user, Ride ride){
-        User userFromDb = userRepository.getOne(user.getUserId());
-        userFromDb.addOwnerRide(ride);
-        return userFromDb;
+    public User saveOrUpdate(User user) {
+        return userRepository.save(user);
     }
 }
